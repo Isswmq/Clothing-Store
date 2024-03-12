@@ -1,22 +1,21 @@
 package org.store.dev.moonrock.model;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "users")
 @Data
-
+@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 public class User {
 
     @Id
