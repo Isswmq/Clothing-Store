@@ -1,5 +1,14 @@
 --liquibase formatted sql
 
+CREATE TABLE IF NOT EXISTS address(
+    id SERIAL PRIMARY KEY,
+    country VARCHAR(32) NOT NULL,
+    city VARCHAR(32) NOT NULL,
+    street VARCHAR(32) NOT NULL,
+    house VARCHAR(32) NOT NULL,
+    postal_code VARCHAR(32) NOT NULL
+);
+
 --changeset moonrock:1
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -7,14 +16,14 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(128) NOT NULL,
     first_name VARCHAR(32) NOT NULL,
     last_name VARCHAR(32) NOT NULL,
-    address VARCHAR(32),
+    address INT REFERENCES address(id),
     telephone INT
 );
 
 --changeset moonrock:2
 CREATE TABLE IF NOT EXISTS discount(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(32),
+    name VARCHAR(32) NOT NULL,
     description TEXT NOT NULL,
     discount_percent DECIMAL NOT NULL
 );
@@ -33,7 +42,7 @@ CREATE TABLE IF NOT EXISTS product(
     id SERIAL PRIMARY KEY,
     name VARCHAR(32) NOT NULL,
     description TEXT NOT NULL,
-    SKU VARCHAR(64) NOT NULL,
+    SKU VARCHAR(64) NOT NULL UNIQUE,
     category VARCHAR NOT NULL,
     price DECIMAL NOT NULL,
     discount_id INT NOT NULL REFERENCES discount(id)
@@ -68,4 +77,6 @@ CREATE TABLE IF NOT EXISTS cart_item(
     product_id INT REFERENCES product(id),
     quantity INT
 );
+
+
 
