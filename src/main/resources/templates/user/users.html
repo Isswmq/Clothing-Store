@@ -11,27 +11,19 @@
     <div>
         <table>
             <tr>
-                <th>ID:</th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-            </tr>
-            <tr>
-                <th>Email:</th>
                 <td th:text="${user.email}"></td>
-            </tr>
-            <tr>
-                <th>First Name:</th>
                 <td th:text="${user.firstname}"></td>
-            </tr>
-            <tr>
-                <th>Last Name:</th>
                 <td th:text="${user.lastname}"></td>
-            </tr>
-            <tr>
-                <th>Address:</th>
                 <td th:text="${user.address}"></td>
-            </tr>
-            <tr>
-                <th>Phone:</th>
                 <td th:text="${user.phone}"></td>
             </tr>
         </table>
