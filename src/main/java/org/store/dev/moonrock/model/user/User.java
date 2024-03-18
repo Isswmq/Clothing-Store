@@ -7,8 +7,6 @@ import lombok.*;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
-import java.time.LocalDate;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -44,5 +42,6 @@ public class User {
     private Address address;
 
     @NotBlank(message = "Phone is required")
+    @Column(name = "telephone")
     private Integer phone;
 }
